@@ -15,7 +15,7 @@ class PansController extends AbstractController
      */
     public function index(PanRepository $panRepository): Response
     {
-        $pans = $panRepository->findAll();
+        $pans = $panRepository->findBy([], ['createdAt' =>'DESC']);
         return $this->render('pans/index.html.twig', compact('pans'));
     }
 
