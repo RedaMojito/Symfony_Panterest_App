@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Find all good Pans' %}
+
+{% block body %}
+<h1>{{ pluralize(pans|length, 'Pin', 'Pins') }}</h1>
+
+{% for pan in pans %}
+<article>
+    <h2>{{ pan.title }}</h2>
+    <p>{{ pan.description }}</p>
+</article>
+
+{% endfor %}
+{% endblock %}
