@@ -7,8 +7,8 @@
 
 {% for pan in pans %}
 <article>
-    <h2>{{ pan.title }}</h2>
-    <p>{{ pan.description }}</p>
+    <h2><a href="{{path('app-pans-show', {id: pan.id})}}">{{ pan.title }}</a></h2>
+    <p><a href="#">{{ pan.description }}</a></p>
 </article>
 
 {% endfor %}

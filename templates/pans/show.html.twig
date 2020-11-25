@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title pan.title %}
+
+{% block body %}
+<article>
+<h1>{{ pan.title}}</h1>
+<p>{{ pan.description }}</p>
+</article>
+
+<p><a href="{{path('app-home')}}">Go Back</a></p>
+
+{% endblock %}
