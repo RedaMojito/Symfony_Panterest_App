@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Edit Page #'~ pan.id %}
+
+{% block body %}
+<h1>Edit Pan #{{ pan.id }}</h1>
+{{ form_start(form) }}
+
+{{form_widget(form)}}
+
+<input type="submit" value="Edit Pan">
+{{ form_end(form) }}
+{% endblock %}

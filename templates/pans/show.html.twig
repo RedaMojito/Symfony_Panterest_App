@@ -8,6 +8,7 @@
 <p>{{ pan.description }}</p>
 </article>
 
-<p><a href="{{path('app-home')}}">Go Back</a></p>
+<a href="{{path('app-pans-edit', {id : pan.id})}}">Edit</a>
+<a href="{{path('app-home')}}">Go Back</a>
 
 {% endblock %}
