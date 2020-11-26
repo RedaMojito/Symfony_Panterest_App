@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pan;
+use App\Form\PanType;
 use App\Repository\PanRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,11 +39,7 @@ class PansController extends AbstractController
     {
 
         $pan = new Pan;
-       $form = $this->createFormBuilder($pan)
-        ->add('title', TextType::class)
-        ->add('description', TextareaType::class)
-        ->getForm()
-        ;
+       $form = $this->createForm(PanType::class, $pan);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -54,15 +51,11 @@ class PansController extends AbstractController
     }
 
     /**
-     * @Route("/pans/{id<[0-9]+>}/edit", name="app-pans-edit", methods="GET|POST")
+     * @Route("/pans/{id<[0-9]+>}/edit", name="app-pans-edit", methods="GET|PUT")
      */
     public function edit(Pan $pan,Request $request,EntityManagerInterface $em): Response
     {
-        $form = $this->createFormBuilder($pan)
-        ->add('title', TextType::class)
-        ->add('description', TextareaType::class)
-        ->getForm()
-        ;
+        $form = $this->createForm(PanType::class, $pan, ['method'=>'PUT']);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em->flush();
