@@ -69,10 +69,15 @@ class PansController extends AbstractController
        /**
      * @Route("/pans/{id<[0-9]+>}/delete", name="app-pans-delete", methods="DELETE")
      */
-    public function delete(Pan $pan,EntityManagerInterface $em): Response
+    public function delete(Request $request,Pan $pan,EntityManagerInterface $em): Response
     {
-        $em->remove($pan);
-        $em->flush();
+        $submittedToken = $request->request->get('csrf_token');
+
+        if($this->isCsrfTokenValid('pan_deletion' . $pan->getId(), $submittedToken)){
+            $em->remove($pan);
+            $em->flush();
+        }
+ 
         return $this->redirectToRoute('app-home');
     }
 }

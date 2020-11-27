@@ -7,12 +7,7 @@
 <h1>Create Pan</h1>
 
 
-{{ form_start(form) }}
-
-{{ form_widget(form) }}
-
-<input type="submit" value="Create Pan">
-{{ form_end(form) }}
+{{ include('pans/_form.html.twig') }}
 
 
 {% endblock %}
