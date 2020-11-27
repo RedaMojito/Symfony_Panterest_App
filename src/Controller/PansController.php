@@ -67,7 +67,7 @@ class PansController extends AbstractController
     }
 
        /**
-     * @Route("/pans/{id<[0-9]+>}/delete", name="app-pans-delete", methods="DELETE")
+     * @Route("/pans/{id<[0-9]+>}", name="app-pans-delete", methods="DELETE")
      */
     public function delete(Request $request,Pan $pan,EntityManagerInterface $em): Response
     {
