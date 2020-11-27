@@ -40,11 +40,15 @@ class PansController extends AbstractController
 
         $pan = new Pan;
        $form = $this->createForm(PanType::class, $pan);
+        
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($pan);
             $em->flush();
+
+            $this->addFlash('success', 'Pan successfully created !');
+
             return $this->redirectToRoute('app-home');
         }
         return $this->render('pans/create.html.twig', ['form'=> $form->createView()]);
@@ -59,6 +63,9 @@ class PansController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em->flush();
+
+            $this->addFlash('success', 'Pan successfully updated !');
+
             return $this->redirectToRoute('app-home');
         }
         return $this->render('pans/edit.html.twig', 
@@ -76,6 +83,7 @@ class PansController extends AbstractController
         if($this->isCsrfTokenValid('pan_deletion' . $pan->getId(), $submittedToken)){
             $em->remove($pan);
             $em->flush();
+            $this->addFlash('info', 'Pan successfully deleted !');
         }
  
         return $this->redirectToRoute('app-home');
