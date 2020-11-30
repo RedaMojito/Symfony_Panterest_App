@@ -3,14 +3,30 @@
 {% block title 'Find all good Pans' %}
 
 {% block body %}
-<h1>{{ pluralize(pans|length, 'Pin', 'Pins') }}</h1>
+{% if pans|length > 0 %} 
+   <h1 class="mb-4 text-center text-muted">{{ pluralize(pans|length, 'Pin', 'Pins') }}</h1>
+  
+        <div class="row ">
+            {% for pan in pans %}
+                <div class="col-md-4 mb-5">
+                     <article class="pan bg-white rounded shadow">
+                        <div class="mw-100 overflow-hidden">
+                            <a href="{{path('app-pans-show', {id: pan.id})}}">
+                                <img class="w-100 rounded-top mb-3" src="{{ (pan.imageName ? vich_uploader_asset(pan) : asset('/build/images/Album_cover_broken.jpeg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pan.title }}" />
+                            </a>
+                        </div>
+                        
+                        <h2><a class="pl-3 text-secondary text-decoration-none" href="{{path('app-pans-show', {id: pan.id})}}">{{ pan.title }}</a></h2>
+                        
+                        <p class="pb-3 pl-3 text-muted">OWNER [Full Name]</p>
+                    </article>
+                </div>
+           
+            {% endfor %} 
+        </div>
+    
+{% else %} 
+    <p class="h1 text-center mt-5">No pans yet.<a href="aa{{ path('app-pans-create')}}" class="text-decoration-none">Be the first! </a></p>
+{% endif %}
 
-{% for pan in pans %}
-<article>
-    <h2><a href="{{path('app-pans-show', {id: pan.id})}}">{{ pan.title }}</a></h2>
-    <p><a href="#">{{ pan.description|u.truncate(13, '...', false) }}</a></p>
-    <p>{{ pan.createdAt|date }}</p>
-</article>
-
-{% endfor %}
 {% endblock %}

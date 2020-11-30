@@ -1,3 +1,4 @@
+const { copyFiles } = require('@symfony/webpack-encore');
 var Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -69,6 +70,11 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/admin.js')
+    copyFiles({
+        from: './assets/images',
+        to: '[path][name].[hash:8].[ext]',
+        context: './assets'
+   })
 ;
 
 module.exports = Encore.getWebpackConfig();
