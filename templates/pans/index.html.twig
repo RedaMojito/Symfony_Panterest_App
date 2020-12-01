@@ -10,9 +10,9 @@
             {% for pan in pans %}
                 <div class="col-md-4 mb-5">
                      <article class="pan bg-white rounded shadow">
-                        <div class="mw-100 overflow-hidden">
+                        <div class="mw-100 rounded-top overflow-hidden">
                             <a href="{{path('app-pans-show', {id: pan.id})}}">
-                                <img class="w-100 rounded-top mb-3" src="{{ (pan.imageName ? vich_uploader_asset(pan) : asset('/build/images/Album_cover_broken.jpeg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pan.title }}" />
+                                <img class="w-100 mb-3" src="{{ (pan.imageName ? vich_uploader_asset(pan) : asset('/build/images/Album_cover_broken.jpeg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pan.title }}" />
                             </a>
                         </div>
                         
