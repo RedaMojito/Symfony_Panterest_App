@@ -14,7 +14,7 @@ final class Version20201201170244 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Create user table and make it timestampable';
     }
 
     public function up(Schema $schema) : void
