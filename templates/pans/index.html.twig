@@ -18,7 +18,7 @@
                         
                         <h2><a class="pl-3 text-secondary text-decoration-none" href="{{path('app-pans-show', {id: pan.id})}}">{{ pan.title }}</a></h2>
                         
-                        <p class="pb-3 pl-3 text-muted">OWNER [Full Name]</p>
+                        <p class="pb-3 pl-3 text-muted">Submitted by {{ pan.user.fullName }}</p>
                     </article>
                 </div>
            
