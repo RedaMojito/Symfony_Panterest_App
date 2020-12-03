@@ -8,17 +8,19 @@
     <div class="col-md-6 mx-auto">
         <article class="pan bg-white rounded shadow">
         <div class="mw-100 rounded-top overflow-hidden">
-            <a href="{{path('app-pans-show', {id: pan.id})}}">
+            
                 <img class="w-100 mb-3" src="{{ (pan.imageName ? vich_uploader_asset(pan) : asset('/build/images/Album_cover_broken.jpeg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pan.title }}" />
-            </a>
+      
         </div>
-        
-        <h1><a class="pl-3 text-secondary text-decoration-none" href="{{path('app-pans-show', {id: pan.id})}}">{{ pan.title }}</a></h1>     
-        <p class="text-muted pl-3 pb-3"><small>Submitted {{ pan.createdAt|ago}} by {{ pan.user.fullName }}</small></p>
-        <p class="pl-3 pb-3">
+        <div class="p-3">
+           <h1 class="h5 text-secondary">{{ pan.title }}</h1>     
+            <p class="text-muted "><small>Submitted {{ pan.createdAt|ago}} by {{ pan.user.fullName }}</small></p>
+            <p class="text-break">
             {{ pan.description }}
         </p>
-    <div class="pl-3 pb-3">
+        </div>
+     
+    <div class="p-3">
        <a href="{{path('app-pans-edit', {id : pan.id})}}" class="btn btn-light">Edit</a>
         <a href="#" onclick="event.preventDefault(); confirm('Are you sure') &&
         document.getElementById('js-pan-delete-form').submit();" class="btn btn-light">Delete</a>
@@ -26,7 +28,7 @@
         <form id="js-pan-delete-form" action="{{path('app-pans-delete', {id : pan.id})}}" method="post" style="display: none;">
         <input type="hidden" name="csrf_token" value="{{ csrf_token('pan_deletion' ~ pan.id)}}">
         <input type="hidden" name="_method" value="DELETE">
-    </form>
+        </form>
     </div>
  
     </div>

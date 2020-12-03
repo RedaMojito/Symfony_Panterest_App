@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Pan;
 use App\Form\PanType;
 use App\Repository\PanRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,15 +37,18 @@ class PansController extends AbstractController
     /**
      * @Route("/pans/create", name="app-pans-create", methods="GET|POST")
      */
-    public function create(Request $request,EntityManagerInterface $em): Response
+    public function create(Request $request,EntityManagerInterface $em,UserRepository $userRepo): Response
     {
 
         $pan = new Pan;
        $form = $this->createForm(PanType::class, $pan);
         
+        
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $redaMojito = $userRepo->findOneBy(['email'=> 'reda.lamfa@gmail.com']);
+            $pan->setUser($redaMojito);
             $em->persist($pan);
             $em->flush();
 
