@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h1 class="text-center mt-5 mb-3">Please sign in</h1>
+        <p class="mb-5 text-center text-muted">Your pans are waiting for you</p>
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-error rounded mb-3">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="email" class="form-control" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+           
+            <div class="d-flex justify-content-between">
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+                <a href="#">Forgot password?</a>
+            </div>    
+            
+
+
+             <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
+
+            <button class="btn btn-lg btn-primary mt-3 btn-block" type="submit">
+                Sign in
+            </button>
+            <p class="mt-5 mb-3 text-center text-muted">Not registred yet <a href="#">Create acount</a></p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

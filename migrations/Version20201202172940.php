@@ -14,7 +14,7 @@ final class Version20201202172940 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Add relation between pans and users table';
     }
 
     public function up(Schema $schema) : void
