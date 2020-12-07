@@ -47,8 +47,8 @@ class PansController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $redaMojito = $userRepo->findOneBy(['email'=> 'reda.lamfa@gmail.com']);
-            $pan->setUser($redaMojito);
+            
+            $pan->setUser($this->getUser());
             $em->persist($pan);
             $em->flush();
 
